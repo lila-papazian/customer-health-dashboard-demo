@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/table";
 
 import { CustomerRow } from "./CustomerRow";
-import type { CustomerStatus } from "./CustomerRow";
+import { CustomerStatus } from "@/lib/types";
 
 type Customer = {
   name: string;
