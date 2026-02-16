@@ -52,7 +52,7 @@ export function CustomerRow({
 
       {/* Status */}
       <td className="p-2 border-r border-gray-300">
-        <StatusBadge status={status} />
+        {/* <StatusBadge status={status} /> */}
       </td>
 
       {/* Users */}
