@@ -1,5 +1,11 @@
+import {
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
 import { HealthScoreBar } from "./HealthScoreBar";
-import { StatusBadge } from "./StatusBadge";
 
 const actionMap: Record<
   string,
@@ -26,7 +32,7 @@ const actionMap: Record<
 type Props = {
   name: string;
   score: number;
-  status: string;
+  status: "Healthy" | "Warning" | "High Risk" | "Critical";
   users: number;
 };
 
@@ -39,42 +45,55 @@ export function CustomerRow({
   const action = actionMap[status];
 
   return (
-    <tr className="border-b border-gray-300 hover:bg-blue-100">
+    <TableRow className="hover:bg-blue-100">
       {/* Client name */}
-      <td className="p-2 border-r border-gray-300 font-bold">
+      <TableCell className="p-2 border-r border-gray-300 font-bold">
         {name}
-      </td>
+      </TableCell>
 
       {/* Health score */}
-      <td className="p-2 border-r border-gray-300">
+      <TableCell className="p-2 border-r border-gray-300">
         <HealthScoreBar value={score} />
-      </td>
+      </TableCell>
 
       {/* Status */}
-      <td className="p-2 border-r border-gray-300">
-        {/* <StatusBadge status={status} /> */}
-      </td>
+      <TableCell className="p-2 border-r border-gray-300">
+        <Badge
+          variant="outline"
+          className={`
+            text-[10px] uppercase font-bold
+            border
+            ${action.className}
+            !rounded-none
+          `}
+        >
+          {status}
+        </Badge>
+      </TableCell>
 
       {/* Users */}
-      <td className="p-2 border-r border-gray-300">
+      <TableCell className="p-2 border-r border-gray-300">
         {users.toLocaleString()}
-      </td>
+      </TableCell>
 
       {/* Action */}
-      <td className="p-2">
-        <button
+      <TableCell className="p-2">
+        <Button
+          variant="ghost"
           className={`
             text-[10px] uppercase
-            px-2 py-0.5
+            px-2 py-0.5 h-auto
             border
             ${action.className}
             hover:brightness-105
             active:translate-y-[1px]
+            focus-visible:ring-0
+            !rounded-none
           `}
         >
           {action.label}
-        </button>
-      </td>
-    </tr>
+        </Button>
+      </TableCell>
+    </TableRow>
   );
 }
