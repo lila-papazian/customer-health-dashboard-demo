@@ -1,38 +1,9 @@
-import {
-  TableRow,
-  TableCell,
-} from "@/components/ui/table";
+import { TableRow, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { HealthScoreBar } from "./HealthScoreBar";
-
-const actionMap: Record<
-  string,
-  { label: string; className: string }
-> = {
-  Healthy: {
-    label: "VIEW",
-    className: "bg-green-200 text-black border-green-700",
-  },
-  Warning: {
-    label: "REVIEW",
-    className: "bg-yellow-200 text-black border-yellow-700",
-  },
-  "High Risk": {
-    label: "INVESTIGATE",
-    className: "bg-red-200 text-black border-red-700",
-  },
-  Critical: {
-    label: "ESCALATE",
-    className: "bg-red-700 text-white border-red-900 font-bold",
-  },
-};
-
-export type CustomerStatus =
-  | "Healthy"
-  | "Warning"
-  | "High Risk"
-  | "Critical";
+import { CustomerStatus } from "@/lib/types";
+import { actionMap } from "./actionMap";
 
 type Props = {
   name: string;
@@ -41,14 +12,8 @@ type Props = {
   users: number;
 };
 
-export function CustomerRow({
-  name,
-  score,
-  status,
-  users,
-}: Props) {
+export function CustomerRow({ name, score, status, users }: Props) {
   const action = actionMap[status];
-
   return (
     <TableRow className="hover:bg-blue-100">
       {/* Client name */}
