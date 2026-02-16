@@ -4,7 +4,6 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
 import { HealthScoreBar } from "./HealthScoreBar";
 
 const actionMap: Record<
@@ -29,10 +28,16 @@ const actionMap: Record<
   },
 };
 
+export type CustomerStatus =
+  | "Healthy"
+  | "Warning"
+  | "High Risk"
+  | "Critical";
+
 type Props = {
   name: string;
   score: number;
-  status: "Healthy" | "Warning" | "High Risk" | "Critical";
+  status: CustomerStatus;
   users: number;
 };
 
