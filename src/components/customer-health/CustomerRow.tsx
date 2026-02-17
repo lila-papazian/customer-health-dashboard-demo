@@ -10,12 +10,28 @@ type Props = {
   score: number;
   status: CustomerStatus;
   users: number;
+  isSelected: boolean;
+  onSelect: () => void;
 };
 
-export function CustomerRow({ name, score, status, users }: Props) {
+export function CustomerRow({
+  name,
+  score,
+  status,
+  users,
+  isSelected,
+  onSelect,
+}: Props) {
   const action = actionMap[status];
   return (
-    <TableRow className="hover:bg-blue-100">
+    <TableRow
+      onClick={onSelect}
+      className={`
+    cursor-pointer
+    hover:bg-blue-100
+    ${isSelected ? "bg-blue-200" : ""}
+  `}
+    >
       {/* Client name */}
       <TableCell className="p-2 border-r border-gray-300 font-bold">
         {name}
