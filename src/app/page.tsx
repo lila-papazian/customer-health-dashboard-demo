@@ -4,6 +4,7 @@ import { useState } from "react";
 import { WindowHeader } from "@/components/customer-health/WindowHeader";
 import { CustomerHealthToolbar } from "@/components/customer-health/CustomerHealthToolbar";
 import { CustomerTable } from "@/components/customer-health/CustomerTable";
+import { CustomerDetailsSheet } from "@/components/customer-health/CustomerDetailSheet";
 
 export default function Page() {
   const [search, setSearch] = useState("");
@@ -19,6 +20,11 @@ export default function Page() {
         <CustomerTable
           selectedCustomer={selectedCustomer}
           onSelectCustomer={setSelectedCustomer}
+        />
+
+        <CustomerDetailsSheet
+          customerName={selectedCustomer}
+          onClose={() => setSelectedCustomer(null)}
         />
       </div>
     </div>
