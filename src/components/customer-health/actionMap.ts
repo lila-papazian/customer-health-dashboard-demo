@@ -1,4 +1,4 @@
-import type { CustomerStatus } from "./CustomerRow";
+import { CustomerStatus } from "@/lib/types";
 
 type ActionConfig = {
   label: string;
