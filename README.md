@@ -44,6 +44,36 @@ This project intentionally focuses on **structure and correctness** over breadth
 
 ---
 
+## Next.js App Router – useSearchParams and Suspense
+
+This project uses the Next.js App Router.
+
+When using `useSearchParams()` inside a client component rendered at the
+page level, the component **must be wrapped in a `<Suspense>` boundary**.
+Otherwise, the production build will fail during prerendering.
+
+This is required because `useSearchParams()` can trigger a CSR bailout
+during static generation, and Next.js enforces an explicit Suspense
+boundary for this case.
+
+Reference:
+https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+
+---
+
+## Architectural note
+
+A more production-oriented pattern is to keep the page as a **Server
+Component**, read `searchParams` on the server, and move only the
+interactive UI into a client component (client island pattern). That
+approach avoids the Suspense bailout and enables better static and
+streaming optimizations.
+
+The current implementation uses a client page wrapped in Suspense to
+keep the fix minimal and localized.
+
+---
+
 ## 🚫 What this demo does NOT include (yet)
 
 This is intentional and by design:
